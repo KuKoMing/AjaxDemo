@@ -1,0 +1,39 @@
+﻿@model AjaxDemo.Controllers.HomeworkController
+
+@{
+    ViewData["Title"] = "travel";
+}
+
+<h1>travel</h1>
+
+<div class="container">
+
+    <div class="row" id="travelcard">
+
+        <div class="col"></div>
+
+        <script src="~/datas/travel.js"></script>
+        <script>
+            const datas = spots.CommonFormat.Section.map(item => {
+                const { stitle, xbody, file } = item;
+                var imgSrc = file && file.img && file.img[0] && file.img[0].text;
+                return `
+                                <div class="col-md-4"> <!-- 使用 col-md-4 表示每個卡片佔據四分之一寬度 -->
+                                    <div class="card" style="width: 18rem;">
+                                        <img src="${imgSrc || '未有圖片'}" class="card-img-top" alt="未有圖片">
+                                        <div class="card-body">
+                                            <h5 class="card-title">${stitle}</h5>
+                                            <p class="card-text">${xbody}</p>
+                                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+            });
+            document.querySelector('#travelcard').innerHTML = datas.join("");
+        </script>
+
+
+        <div class="col"></div>
+    </div>
+</div>
