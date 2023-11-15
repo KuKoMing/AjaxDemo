@@ -1,0 +1,10 @@
+﻿@model IEnumerable<AjaxDemo.Models.Members>
+
+<ul>
+ @foreach(var product in Model)
+ {
+ <li>@product.Name</li>
+        <li>@product.MemberId</li>
+        <li>@product.Age</li>
+ }
+</ul>

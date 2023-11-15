@@ -7,11 +7,19 @@ namespace AjaxDemo.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly DemoContext _demoContext;
+        public HomeController(ILogger<HomeController> logger,DemoContext context)
         {
+            _demoContext = context;
             _logger = logger;
         }
+        public IActionResult Test()
+        {
+            var mem = _demoContext.Members.Where(p => p.MemberId == 1);
+            return View(mem);
+        }
+
+
 
         public IActionResult Index()
         {
@@ -23,8 +31,13 @@ namespace AjaxDemo.Controllers
             return View();
 
         }
+        public IActionResult Register()
+        {
+            return View();
+        }
 
-            public IActionResult Privacy()
+
+        public IActionResult Privacy()
         {
             return View();
         }
